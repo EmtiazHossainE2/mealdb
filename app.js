@@ -7,10 +7,14 @@ const searchBtn = () => {
         alert('Write your favourite Food')
     }
     else {
+        document.getElementById("spinner").classList.remove("d-none");
+        document.getElementById("search-result").classList.add("d-none");
         const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
         fetch(url)
             .then(response => response.json())
             .then(data => displaySearchResult(data.meals))
+
+
     }
 }
 const displaySearchResult = meals => {
@@ -18,6 +22,8 @@ const displaySearchResult = meals => {
     // for (const meal of result) {
     //     console.log(meal)
     // }
+    document.getElementById("spinner").classList.add("d-none");
+    document.getElementById("search-result").classList.remove("d-none");
     const searchResult = document.getElementById('search-result')
     searchResult.textContent = ''
     if (meals == null) {
