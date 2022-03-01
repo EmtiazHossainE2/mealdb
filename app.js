@@ -4,6 +4,8 @@ document.getElementById("search-field").addEventListener("keyup", function (even
     const searchValue = searchField.value
     // console.log(event.key);
     if (event.key == 'Enter') {
+        document.getElementById("spinner").classList.remove("d-none");
+        document.getElementById("search-result").classList.add("d-none");
         const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
         fetch(url)
             .then(response => response.json())
