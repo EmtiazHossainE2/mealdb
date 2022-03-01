@@ -1,3 +1,17 @@
+// keyup event added 
+document.getElementById("search-field").addEventListener("keyup", function (event) {
+    const searchField = document.getElementById('search-field')
+    const searchValue = searchField.value
+    // console.log(event.key);
+    if (event.key == 'Enter') {
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
+        fetch(url)
+            .then(response => response.json())
+            .then(data => displaySearchResult(data.meals))
+        searchField.value = ''
+    }
+});
+
 const searchBtn = () => {
     const searchField = document.getElementById('search-field')
     const searchValue = searchField.value
@@ -13,8 +27,6 @@ const searchBtn = () => {
         fetch(url)
             .then(response => response.json())
             .then(data => displaySearchResult(data.meals))
-
-
     }
 }
 const displaySearchResult = meals => {
